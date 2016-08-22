@@ -1,0 +1,73 @@
+The application fails to start. To reproduce,
+
+* erl -boot start_sasl
+* application:load(sellaprime).
+* application:start(sellaprime).
+
+The error looks like:
+
+{error,
+    {bad_return,
+        {{sellaprime_app,start,[normal,[]]},
+         {'EXIT',
+             {undef,
+                 [{sellaprime_app,start,[normal,[]],[]},
+                  {application_master,start_supervisor,3,
+                      [{file,"application_master.erl"},
+                       {line,327}]},
+                  {application_master,start_the_app,5,
+                      [{file,"application_master.erl"},
+                       {line,309}]},
+                  {application_master,start_it_new,7,
+                      [{file,"application_master.erl"},
+                       {line,295}]}]}}}}}
+3>
+=CRASH REPORT==== 21-Aug-2016::22:21:21 ===
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.69.0>
+    registered_name: []
+    exception exit: {bad_return,
+                        {{sellaprime_app,start,[normal,[]]},
+                         {'EXIT',
+                             {undef,
+                                 [{sellaprime_app,start,[normal,[]],[]},
+                                  {application_master,start_supervisor,3,
+                                      [{file,"application_master.erl"},
+                                       {line,327}]},
+                                  {application_master,start_the_app,5,
+                                      [{file,"application_master.erl"},
+                                       {line,309}]},
+                                  {application_master,start_it_new,7,
+                                      [{file,"application_master.erl"},
+                                       {line,295}]}]}}}}
+      in function  application_master:init/4 (application_master.erl, line 134)
+    ancestors: [<0.68.0>]
+    messages: [{'EXIT',<0.70.0>,normal}]
+    links: [<0.68.0>,<0.31.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 376
+    stack_size: 27
+    reductions: 124
+  neighbours:
+
+=INFO REPORT==== 21-Aug-2016::22:21:21 ===
+    application: sellaprime
+    exited: {bad_return,
+                {{sellaprime_app,start,[normal,[]]},
+                 {'EXIT',
+                     {undef,
+                         [{sellaprime_app,start,[normal,[]],[]},
+                          {application_master,start_supervisor,3,
+                              [{file,"application_master.erl"},{line,327}]},
+                          {application_master,start_the_app,5,
+                              [{file,"application_master.erl"},{line,309}]},
+                          {application_master,start_it_new,7,
+                              [{file,"application_master.erl"},
+                               {line,295}]}]}}}}
+    type: temporary
+
+
+
